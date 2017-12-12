@@ -3,17 +3,8 @@
 JARFILE=$(find /var/www -type f -name "*.jar" -print -quit)
 
 if [ -z $JARFILE ]; then
-    if [ -f /usr/share/tomcat/bin/catalina.sh ]; then
-        RUN_TOMCAT=true
-    else
-        JARFILE=/opt/jarfiles/defaultapp-1.0-SNAPSHOT-jar-with-dependencies.jar
-    fi
+    JARFILE=/opt/jarfiles/defaultapp-1.0-SNAPSHOT-jar-with-dependencies.jar
 fi
 
-if [ -z $RUN_TOMCAT ]; then
-    echo "Running java -jar $JARFILE"
-    java -jar $JARFILE
-else
-    echo "Starting tomcat server..."
-    /usr/share/tomcat/bin/catalina.sh run
-fi
+echo "Running java -jar $JARFILE"
+java -jar $JARFILE
