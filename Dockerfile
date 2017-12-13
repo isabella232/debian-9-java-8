@@ -1,4 +1,4 @@
-FROM maven:3.5.2-jdk-8 as defaultjavaapp
+FROM maven:3.5.2-jdk-8-slim as defaultjavaapp
 MAINTAINER brian.wilkinson@1and1.co.uk
 COPY defaultapp /
 RUN cd /defaultapp && mvn package
