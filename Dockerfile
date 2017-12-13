@@ -12,7 +12,8 @@ RUN export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true \
 	&& apt-get install openjdk-8-jre \
 	&& apt-get clean \
 	&& rm -rf /var/lib/apt/lists/* \
-	&& mkdir -p /var/www/html \
-	&& chmod 777 /var/www/html \
+	&& mkdir -p /var/www/ \
+	&& chmod 777 /var/www/ \
 	&& chmod +x /usr/local/bin/* \
 	&& chmod -R 777 /opt/jarfiles
+WORKDIR /var/www

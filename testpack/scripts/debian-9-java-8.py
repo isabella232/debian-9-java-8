@@ -23,7 +23,7 @@ class Test1and1Java8Image(unittest.TestCase):
             network_mode="bridge",
             user=10000,
             ports={8080:8080},
-            working_dir="/opt/jarfiles"
+            working_dir="/var/www"
         )
 
         details = docker.APIClient().inspect_container(container=Test1and1Java8Image.container.id)
