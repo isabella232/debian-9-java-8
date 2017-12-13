@@ -28,7 +28,6 @@ class Test1and1Java8Image(unittest.TestCase):
             ports={8080:8080},
             working_dir="/opt/jarfiles"
         )
-        container_logs = Test1and1Java8Image.container.logs().decode('utf-8')
 
         details = docker.APIClient().inspect_container(container=Test1and1Java8Image.container.id)
         Test1and1Java8Image.container_ip = details['NetworkSettings']['IPAddress']
