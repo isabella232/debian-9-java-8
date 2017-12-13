@@ -3,9 +3,6 @@
 import unittest
 import os
 import docker
-import json
-import subprocess
-from stat import *
 from selenium import webdriver
 
 
