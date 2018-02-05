@@ -4,54 +4,17 @@ import unittest
 import os
 import docker
 from selenium import webdriver
+from testpack_helper_library.unittests.dockertests import Test1and1Common
 
 
-class Test1and1Java8Image(unittest.TestCase):
-    docker_container = None
+class Test1and1Java8Image(Test1and1Common):
     container_ip = None
 
     @classmethod
     def setUpClass(cls):
-        image_to_test = os.getenv("IMAGE_NAME")
-        if image_to_test == "":
-            raise Exception("I don't know what image to test")
-        client = docker.from_env()
-        Test1and1Java8Image.container = client.containers.run(
-            image=image_to_test,
-            remove=True,
-            detach=True,
-            network_mode="bridge",
-            user=10000,
-            ports={8080:8080},
-            working_dir="/var/www"
-        )
-
-        details = docker.APIClient().inspect_container(container=Test1and1Java8Image.container.id)
+        Test1and1Common.setUpClass()
+        details = docker.APIClient().inspect_container(container=Test1and1Common.container.id)
         Test1and1Java8Image.container_ip = details['NetworkSettings']['IPAddress']
-
-    @classmethod
-    def tearDownClass(cls):
-        Test1and1Java8Image.container.stop()
-
-    def setUp(self):
-        print ("\nIn method", self._testMethodName)
-        self.container = Test1and1Java8Image.container
-
-    def execRun(self, command):
-        result = self.container.exec_run(command)
-        if isinstance(result, tuple):
-            exit_code = result[0]
-            output = result[1].decode('utf-8')
-        else:
-            output = result.decode('utf-8')
-        return output
-
-    def assertPackageIsInstalled(self, packageName):
-        op = self.execRun("dpkg -l %s" % packageName)
-        self.assertTrue(
-            op.find(packageName) > -1,
-            msg="%s package not installed" % packageName
-        )
 
     # <tests to run>
 
