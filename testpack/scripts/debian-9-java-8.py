@@ -8,13 +8,6 @@ from testpack_helper_library.unittests.dockertests import Test1and1Common
 
 
 class Test1and1Java8Image(Test1and1Common):
-    container_ip = None
-
-    @classmethod
-    def setUpClass(cls):
-        Test1and1Common.setUpClass()
-        details = docker.APIClient().inspect_container(container=Test1and1Common.container.id)
-        Test1and1Java8Image.container_ip = details['NetworkSettings']['IPAddress']
 
     # <tests to run>
 
@@ -34,7 +27,7 @@ class Test1and1Java8Image(Test1and1Common):
 
     def test_default_app(self):
         driver = webdriver.PhantomJS()
-        driver.get("http://%s:8080/" % Test1and1Java8Image.container_ip)
+        driver.get("http://%s:8080/" % Test1and1Common.container_ip)
         self.assertEqual('Java Default App', driver.title)
 
     # </tests to run>
