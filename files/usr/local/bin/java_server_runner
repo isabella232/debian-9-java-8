@@ -7,4 +7,12 @@ if [ -z $JARFILE ]; then
 fi
 
 echo "Running java -jar $JARFILE"
-java -jar $JARFILE
+
+JAVA_OPTS=
+if [ -f /etc/custom_java_opts ]; then
+    source /etc/custom_java_opts
+    JAVA_OPTS=$CUSTOM_JAVA_OPTS
+    echo "Applying JAVA_OPTS $JAVA_OPTS"
+fi
+
+java $JAVA_OPTS -jar $JARFILE
