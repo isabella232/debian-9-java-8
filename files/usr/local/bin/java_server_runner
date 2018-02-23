@@ -9,8 +9,8 @@ fi
 echo "Running java -jar $JARFILE"
 
 JAVA_OPTS=
-if [ -f /etc/custom_java_opts ]; then
-    source /etc/custom_java_opts
+if [ -f /etc/configurability/custom/java_opts ]; then
+    source /etc/configurability/custom/java_opts
     JAVA_OPTS=$CUSTOM_JAVA_OPTS
     echo "Applying JAVA_OPTS $JAVA_OPTS"
 fi

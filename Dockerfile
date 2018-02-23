@@ -20,8 +20,8 @@ RUN export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true \
 	&& apt-get install openjdk-8-jre-headless \
 	&& apt-get clean \
 	&& rm -rf /var/lib/apt/lists/* \
-	&& mkdir -p /var/www/ \
+	&& mkdir -p /var/www/ /etc/configurability/custom \
 	&& chmod 777 /var/www/ \
 	&& chmod +x /usr/local/bin/* \
-	&& chmod -R 777 /opt/jarfiles
+	&& chmod -R 777 /opt/jarfiles /etc/configurability/custom
 WORKDIR /var/www
