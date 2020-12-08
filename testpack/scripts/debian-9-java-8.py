@@ -24,7 +24,7 @@ class Test1and1Java8Image(Test1and1Common):
         self.assertPackageIsInstalled("openjdk-8-jre")
 
     def test_default_app(self):
-        driver = webdriver.PhantomJS()
+        driver = self.getChromeDriver()
         driver.get("http://%s:8080/" % Test1and1Common.container_ip)
         self.assertEqual('Java Default App', driver.title)
 
