@@ -3,7 +3,7 @@ MAINTAINER brian.wilkinson@1and1.co.uk
 COPY defaultapp /
 RUN cd /defaultapp && mvn package
 
-FROM golang as configurability
+FROM golang:1.15-buster as configurability
 MAINTAINER brian.wilkinson@1and1.co.uk
 WORKDIR /go/src/github.com/1and1internet/configurability
 RUN git clone https://github.com/1and1internet/configurability.git . \
